@@ -5,7 +5,7 @@ export default class UserService {
     uri: string = import.meta.env.VITE_APP_API_ENDPOINT
 
 
-    async get(): Promise<any> {
+    async get(): Promise<IUser[]> {
         const response = await fetch(this.uri)
         const data: IUser[] = await response.json()
 
