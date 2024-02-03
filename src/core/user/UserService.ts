@@ -1,16 +1,18 @@
 import type { IUser } from "./IUser";
+import UserRepository from "./UserRepository";
 
 export default class UserService {
 
-    uri: string = import.meta.env.VITE_APP_API_ENDPOINT
+    repository: UserRepository;
 
+    constructor(repository: UserRepository) {
+        this.repository = repository
+    }
 
     async get(): Promise<IUser[]> {
-        const response = await fetch(this.uri)
-        const data: IUser[] = await response.json()
-
+        const data: IUser[] = await this.repository.getAll()
         let list: IUser[] = []
-
+        
         data.forEach((user: IUser) => {
             let template = { id: user.id, name: user.name }
             list.push(template)
