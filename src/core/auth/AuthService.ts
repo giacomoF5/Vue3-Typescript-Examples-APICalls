@@ -9,7 +9,8 @@ export default class AuthService {
 
     async login(data: IAuthUser): Promise<ILoggedInUser> {
 
-        const json = await this.repository.authenticateAxios(data)
+        // const json = await this.repository.authenticateAxios(data)
+        const json = await this.repository.authenticateFetch(data)
         
         const user: ILoggedInUser = {
             username: json.username,
