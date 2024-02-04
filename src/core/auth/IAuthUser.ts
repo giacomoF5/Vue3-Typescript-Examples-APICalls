@@ -1,5 +1,5 @@
 
 export interface IAuthUser {
     username: string
-    isAuthenticated: boolean
+    password: string
 }

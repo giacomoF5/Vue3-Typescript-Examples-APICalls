@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import AuthService from '@/core/auth/AuthService';
+import type { IAuthUser } from '@/core/auth/IAuthUser';
 import { useAuthStore } from '@/stores/auth';
 import { ref, type Ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 const store = useAuthStore()
+const service = new AuthService()
 
 const input_username: Ref<string> = ref('')
 const input_password: Ref<string> = ref('')
@@ -11,11 +14,21 @@ const input_password: Ref<string> = ref('')
 const route = useRoute()
 const router = useRouter()
 
-const login = () => {
+const login = async () => {
+
+  store.user.username = input_username.value
+
+  const data: IAuthUser = {
+    username: input_username.value,
+    password: input_password.value
+  }
+
+  const responseData = await service.login(data)
 
   if (input_username.value == store.user.username) {
-    store.user.isAuthenticated = true
-    const redirectPath = '/private'
+    store.user.isAuthenticated = responseData.isAuthenticated
+    store.user.roles = responseData.roles
+    const redirectPath = '/dashboard'
     router.push(redirectPath)
   }
 
