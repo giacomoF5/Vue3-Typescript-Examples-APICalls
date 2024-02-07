@@ -4,6 +4,7 @@ import PostView from '@/views/PostView.vue'
 import LoginView from '@/views/LoginView.vue'
 import DashboardView from '@/views/DashboardView.vue'
 import { useAuthStore } from '@/stores/auth'
+import MoviesView from '@/views/MoviesView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -36,6 +37,12 @@ const router = createRouter({
       name: 'dashboard',
       component: DashboardView,
       meta: { requiresAuth: true }
+
+    },
+    {
+      path: '/movies',
+      name: '/movies',
+      component: MoviesView
 
     }
   ]

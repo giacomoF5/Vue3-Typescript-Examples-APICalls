@@ -15,6 +15,7 @@ import { RouterLink, RouterView } from 'vue-router'
         <RouterLink to="/posts">Posts</RouterLink>
         <RouterLink to="/login">Login</RouterLink>
         <RouterLink to="/dashboard">Dashboard</RouterLink>
+        <RouterLink to="/movies">Movies</RouterLink>
       </nav>
     </div>
   </header>
